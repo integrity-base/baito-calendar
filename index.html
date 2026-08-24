@@ -5,9 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>バイトシフト</title>
 <style>
-  html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif; background: #fff; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif; background: #fff; color: #202124; }
   header { padding: 12px 16px; background: #1a73e8; color: #fff; font-size: 16px; font-weight: 600; }
-  iframe { display: block; width: 100%; border: 0; height: calc(100% - 46px); }
+  iframe { display: block; width: 100%; border: 0; height: 70vh; min-height: 480px; }
+
+  section.events { padding: 20px 16px 40px; }
+  section.events h2 { font-size: 17px; margin: 0 0 4px; }
+  section.events p.note { font-size: 13px; color: #5f6368; margin: 0 0 16px; }
+
+  .event-card { border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+  .event-card .date-bar { background: #f1f3f4; padding: 10px 14px; font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+  .event-card .date-bar .date { color: #1a73e8; }
+  .event-card .body { padding: 14px; }
+  .event-card .title { font-size: 15px; font-weight: 600; margin: 0 0 10px; }
+
+  table.detail { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  table.detail th, table.detail td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #eee; vertical-align: top; }
+  table.detail th { width: 4.5em; color: #5f6368; font-weight: 500; white-space: nowrap; }
+  table.detail tr:last-child th, table.detail tr:last-child td { border-bottom: none; }
 </style>
 </head>
 <body>
@@ -15,5 +31,34 @@
 <iframe
   src="https://calendar.google.com/calendar/embed?src=c_358f5700e6733c0d6588feacdd2b17636d14cf29ddb71aab26876c38b20ad1c8%40group.calendar.google.com&ctz=Asia%2FTokyo&mode=WEEK&showTitle=0&showNav=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0"
   frameborder="0" scrolling="no"></iframe>
+
+<section class="events">
+  <h2>大きいイベントのお知らせ</h2>
+  <p class="note">通常シフトとは別に、下記の日程で特別対応があります。詳細は各カードをご確認ください。</p>
+
+  <div class="event-card">
+    <div class="date-bar">
+      <span class="date">9月25日(木)</span>
+      <span>十五夜 実着獅子舞イベント出店(食事サポート)</span>
+    </div>
+    <div class="body">
+      <table class="detail">
+        <tr>
+          <th>内容</th>
+          <td>
+            (a) 夜11時の終了後の打ち上げケータリング<br>
+            (b) 獅子舞に寄付してくれた人への返礼品の黒糖饅頭<br>
+            (c) 来賓のお弁当
+          </td>
+        </tr>
+        <tr>
+          <th>時間</th>
+          <td>詳細調整中</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</section>
 </body>
 </html>

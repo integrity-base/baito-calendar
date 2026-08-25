@@ -10,27 +10,39 @@
   header { padding: 12px 16px; background: #1a73e8; color: #fff; font-size: 16px; font-weight: 600; }
   iframe { display: block; width: 100%; border: 0; height: 70vh; min-height: 480px; }
 
-  section.events { padding: 20px 16px 40px; }
-  section.events h2 { font-size: 17px; margin: 0 0 4px; }
-  section.events p.note { font-size: 13px; color: #5f6368; margin: 0 0 16px; }
+  section.hours, section.events { padding: 20px 16px 4px; }
+  section.hours h2, section.events h2 { font-size: 17px; margin: 0 0 12px; }
+  section.events p.note { font-size: 13px; color: #5f6368; margin: -6px 0 16px; }
+  section.events { padding-bottom: 40px; }
 
-  .event-card { border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
-  .event-card .date-bar { background: #f1f3f4; padding: 10px 14px; font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
-  .event-card .date-bar .date { color: #1a73e8; }
-  .event-card .body { padding: 14px; }
-  .event-card .title { font-size: 15px; font-weight: 600; margin: 0 0 10px; }
+  /* accordion (details/summary) */
+  details.accordion-item { border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  details.accordion-item > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 12px 14px;
+    background: #f1f3f4;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  details.accordion-item > summary::-webkit-details-marker { display: none; }
+  details.accordion-item > summary .summary-text { flex: 1; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+  details.accordion-item > summary .arrow { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease; color: #5f6368; }
+  details.accordion-item[open] > summary .arrow { transform: rotate(90deg); }
+  details.accordion-item[open] > summary { border-bottom: 1px solid #e0e0e0; }
+
+  .event-card .date { color: #1a73e8; font-weight: 700; }
+
+  .body { padding: 14px; }
 
   table.detail { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   table.detail th, table.detail td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #eee; vertical-align: top; }
   table.detail th { width: 4.5em; color: #5f6368; font-weight: 500; white-space: nowrap; }
   table.detail tr:last-child th, table.detail tr:last-child td { border-bottom: none; }
-
-  section.hours { padding: 20px 16px 4px; }
-  section.hours h2 { font-size: 17px; margin: 0 0 12px; }
-  table.hours-table { width: 100%; border-collapse: collapse; font-size: 14px; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden; }
-  table.hours-table th, table.hours-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid #eee; }
-  table.hours-table th { width: 5em; background: #f1f3f4; font-weight: 600; white-space: nowrap; }
-  table.hours-table tr:last-child th, table.hours-table tr:last-child td { border-bottom: none; }
 </style>
 </head>
 <body>
@@ -40,28 +52,41 @@
   frameborder="0" scrolling="no"></iframe>
 
 <section class="hours">
-  <h2>通常業務(ポキ58)</h2>
-  <table class="hours-table">
-    <tr>
-      <th>平日</th>
-      <td>9:30〜14:00 / 17:00〜21:30</td>
-    </tr>
-    <tr>
-      <th>土日</th>
-      <td>16:00〜22:30(夜のみ)</td>
-    </tr>
-  </table>
+  <h2>通常業務</h2>
+
+  <details class="accordion-item">
+    <summary>
+      <span class="summary-text">ポキ58</span>
+      <span class="arrow">▶</span>
+    </summary>
+    <div class="body">
+      <table class="detail">
+        <tr>
+          <th>平日</th>
+          <td>9:30〜14:00 / 17:00〜21:30</td>
+        </tr>
+        <tr>
+          <th>土日</th>
+          <td>16:00〜22:30(夜のみ)</td>
+        </tr>
+      </table>
+    </div>
+  </details>
+
 </section>
 
 <section class="events">
   <h2>大きいイベントのお知らせ</h2>
-  <p class="note">通常シフトとは別に、下記の日程で特別対応があります。詳細は各カードをご確認ください。</p>
+  <p class="note">通常業務とは別に、下記の日程で特別対応があります。タップして詳細をご確認ください。</p>
 
-  <div class="event-card">
-    <div class="date-bar">
-      <span class="date">2026年9月25日(木)</span>
-      <span>十五夜 勢理客獅子舞 食事サポート</span>
-    </div>
+  <details class="accordion-item event-card">
+    <summary>
+      <span class="summary-text">
+        <span class="date">2026年9月25日(木)</span>
+        <span>十五夜 勢理客獅子舞 食事サポート</span>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
     <div class="body">
       <table class="detail">
         <tr>
@@ -78,13 +103,16 @@
         </tr>
       </table>
     </div>
-  </div>
+  </details>
 
-  <div class="event-card">
-    <div class="date-bar">
-      <span class="date">2026年10月25日(日)</span>
-      <span>小学生向け栄養講座</span>
-    </div>
+  <details class="accordion-item event-card">
+    <summary>
+      <span class="summary-text">
+        <span class="date">2026年10月25日(日)</span>
+        <span>小学生向け栄養講座</span>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
     <div class="body">
       <table class="detail">
         <tr>
@@ -110,13 +138,16 @@
         </tr>
       </table>
     </div>
-  </div>
+  </details>
 
-  <div class="event-card">
-    <div class="date-bar">
-      <span class="date">2026年11月8日(日)〜10日(火)</span>
-      <span>沖永良部 栄養講座・料理教室</span>
-    </div>
+  <details class="accordion-item event-card">
+    <summary>
+      <span class="summary-text">
+        <span class="date">2026年11月8日(日)〜10日(火)</span>
+        <span>沖永良部 栄養講座・料理教室</span>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
     <div class="body">
       <table class="detail">
         <tr>
@@ -142,13 +173,16 @@
         </tr>
       </table>
     </div>
-  </div>
+  </details>
 
-  <div class="event-card">
-    <div class="date-bar">
-      <span class="date">2026年11月15日(日)</span>
-      <span>ししまいフェス(宮城小学校)</span>
-    </div>
+  <details class="accordion-item event-card">
+    <summary>
+      <span class="summary-text">
+        <span class="date">2026年11月15日(日)</span>
+        <span>ししまいフェス(宮城小学校)</span>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
     <div class="body">
       <table class="detail">
         <tr>
@@ -165,13 +199,16 @@
         </tr>
       </table>
     </div>
-  </div>
+  </details>
 
-  <div class="event-card">
-    <div class="date-bar">
-      <span class="date">2027年2月13日(土)</span>
-      <span>てだこウォーク キッチンカー出店</span>
-    </div>
+  <details class="accordion-item event-card">
+    <summary>
+      <span class="summary-text">
+        <span class="date">2027年2月13日(土)</span>
+        <span>てだこウォーク キッチンカー出店</span>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
     <div class="body">
       <table class="detail">
         <tr>
@@ -184,7 +221,7 @@
         </tr>
       </table>
     </div>
-  </div>
+  </details>
 
 </section>
 </body>

@@ -12,8 +12,10 @@
 
   .page-section { padding: 20px 16px 4px; }
   .page-section:last-of-type { padding-bottom: 40px; }
+  .page-section h2 { font-size: 17px; margin: 0 0 14px; }
 
-  .page-section > summary {
+  /* section-level toggle (通常業務) */
+  details.page-section > summary {
     list-style: none;
     cursor: pointer;
     display: flex;
@@ -21,18 +23,34 @@
     justify-content: space-between;
     gap: 8px;
   }
-  .page-section > summary::-webkit-details-marker { display: none; }
-  .page-section > summary h2 { font-size: 17px; margin: 0; }
-  .page-section > summary .arrow { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease; color: #5f6368; font-size: 14px; }
-  .page-section[open] > summary .arrow { transform: rotate(90deg); }
+  details.page-section > summary::-webkit-details-marker { display: none; }
+  details.page-section > summary h2 { margin: 0; }
+  details.page-section > summary .arrow { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease; color: #5f6368; font-size: 14px; }
+  details.page-section[open] > summary .arrow { transform: rotate(90deg); }
+  details.page-section .section-body { margin-top: 14px; }
 
-  .section-body { margin-top: 14px; }
-  p.note { font-size: 13px; color: #5f6368; margin: -4px 0 16px; }
+  p.note { font-size: 13px; color: #5f6368; margin: -6px 0 16px; }
 
+  /* card-level toggle (イベント) */
   .card { border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
-  .card .card-head { background: #f1f3f4; padding: 12px 14px; font-weight: 600; font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+  .card .card-head { background: #f1f3f4; padding: 12px 14px; font-weight: 600; font-size: 14px; }
   .card .card-head .date { color: #1a73e8; font-weight: 700; }
   .card .body { padding: 14px; }
+
+  details.card > summary.card-head {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  details.card > summary.card-head::-webkit-details-marker { display: none; }
+  details.card > summary.card-head .summary-text { flex: 1; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+  details.card > summary.card-head .arrow { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease; color: #5f6368; font-size: 14px; }
+  details.card[open] > summary.card-head .arrow { transform: rotate(90deg); }
+  details.card[open] > summary.card-head { border-bottom: 1px solid #e0e0e0; }
 
   table.detail { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   table.detail th, table.detail td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #eee; vertical-align: top; }
@@ -72,144 +90,153 @@
   </div>
 </details>
 
-<details class="page-section" open>
-  <summary>
-    <h2>大きいイベントのお知らせ</h2>
-    <span class="arrow">▶</span>
-  </summary>
-  <div class="section-body">
-    <p class="note">通常業務とは別に、下記の日程で特別対応があります。</p>
+<section class="page-section">
+  <h2>イベント</h2>
 
-    <div class="card">
-      <div class="card-head">
+  <details class="card">
+    <summary class="card-head">
+      <span class="summary-text">
         <span class="date">2026年9月25日(木)</span>
         <span>十五夜 勢理客獅子舞 食事サポート</span>
-      </div>
-      <div class="body">
-        <table class="detail">
-          <tr>
-            <th>内容</th>
-            <td>
-              (a) 夜11時の終了後の打ち上げケータリング<br>
-              (b) 獅子舞に寄付してくれた人への返礼品の黒糖饅頭<br>
-              (c) 来賓のお弁当
-            </td>
-          </tr>
-          <tr>
-            <th>時間</th>
-            <td>詳細調整中</td>
-          </tr>
-        </table>
-      </div>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
+    <div class="body">
+      <table class="detail">
+        <tr>
+          <th>内容</th>
+          <td>
+            (a) 夜11時の終了後の打ち上げケータリング<br>
+            (b) 獅子舞に寄付してくれた人への返礼品の黒糖饅頭<br>
+            (c) 来賓のお弁当
+          </td>
+        </tr>
+        <tr>
+          <th>時間</th>
+          <td>詳細調整中</td>
+        </tr>
+      </table>
     </div>
+  </details>
 
-    <div class="card">
-      <div class="card-head">
+  <details class="card">
+    <summary class="card-head">
+      <span class="summary-text">
         <span class="date">2026年10月25日(日)</span>
         <span>小学生向け栄養講座</span>
-      </div>
-      <div class="body">
-        <table class="detail">
-          <tr>
-            <th>内容</th>
-            <td>
-              3・4年生(40名ほど)の小学生に栄養講座を実施<br>
-              <strong>1部/10:00〜10:30</strong> 児童向け食育セミナー<br>
-              身体を作るために心がけたい食事や、どんなものを食べた方がいいかなど、ライトな感じでの講義。<br>
-              <strong>2部/11:00〜12:00</strong> 保護者向けセミナー
-            </td>
-          </tr>
-          <tr>
-            <th>場所</th>
-            <td>沖縄県総合運動公園</td>
-          </tr>
-          <tr>
-            <th>時間</th>
-            <td>1部 10:00〜10:30 / 2部 11:00〜12:00</td>
-          </tr>
-          <tr>
-            <th>関連</th>
-            <td><a href="https://www.okinawa-jr-athlete.com" target="_blank" rel="noopener">okinawa-jr-athlete.com</a></td>
-          </tr>
-        </table>
-      </div>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
+    <div class="body">
+      <table class="detail">
+        <tr>
+          <th>内容</th>
+          <td>
+            3・4年生(40名ほど)の小学生に栄養講座を実施<br>
+            <strong>1部/10:00〜10:30</strong> 児童向け食育セミナー<br>
+            身体を作るために心がけたい食事や、どんなものを食べた方がいいかなど、ライトな感じでの講義。<br>
+            <strong>2部/11:00〜12:00</strong> 保護者向けセミナー
+          </td>
+        </tr>
+        <tr>
+          <th>場所</th>
+          <td>沖縄県総合運動公園</td>
+        </tr>
+        <tr>
+          <th>時間</th>
+          <td>1部 10:00〜10:30 / 2部 11:00〜12:00</td>
+        </tr>
+        <tr>
+          <th>関連</th>
+          <td><a href="https://www.okinawa-jr-athlete.com" target="_blank" rel="noopener">okinawa-jr-athlete.com</a></td>
+        </tr>
+      </table>
     </div>
+  </details>
 
-    <div class="card">
-      <div class="card-head">
+  <details class="card">
+    <summary class="card-head">
+      <span class="summary-text">
         <span class="date">2026年11月8日(日)〜10日(火)</span>
         <span>沖永良部 栄養講座・料理教室</span>
-      </div>
-      <div class="body">
-        <table class="detail">
-          <tr>
-            <th>主催</th>
-            <td>一般社団法人 元気わどまりクラブ(鹿児島県の女性向けスポーツ振興事業の一環)</td>
-          </tr>
-          <tr>
-            <th>内容</th>
-            <td>
-              <strong>1. スポーツ栄養講座</strong>(90〜120分)<br>
-              テーマ:アスリートのための栄養の基本。対象はスポーツをしている子ども(小学生〜高校生、バレーボール・サッカー・武道など)を持つ保護者、10〜20名程度<br><br>
-              <strong>2. 補食料理教室</strong>(120分)<br>
-              補食ミニ講座(30分)+調理実習(90分)。メニュー例:いきなり団子、みたらし団子
-            </td>
-          </tr>
-          <tr>
-            <th>場所</th>
-            <td>沖永良部島(鹿児島県大島郡和泊町)</td>
-          </tr>
-          <tr>
-            <th>時間</th>
-            <td>詳細調整中</td>
-          </tr>
-        </table>
-      </div>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
+    <div class="body">
+      <table class="detail">
+        <tr>
+          <th>主催</th>
+          <td>一般社団法人 元気わどまりクラブ(鹿児島県の女性向けスポーツ振興事業の一環)</td>
+        </tr>
+        <tr>
+          <th>内容</th>
+          <td>
+            <strong>1. スポーツ栄養講座</strong>(90〜120分)<br>
+            テーマ:アスリートのための栄養の基本。対象はスポーツをしている子ども(小学生〜高校生、バレーボール・サッカー・武道など)を持つ保護者、10〜20名程度<br><br>
+            <strong>2. 補食料理教室</strong>(120分)<br>
+            補食ミニ講座(30分)+調理実習(90分)。メニュー例:いきなり団子、みたらし団子
+          </td>
+        </tr>
+        <tr>
+          <th>場所</th>
+          <td>沖永良部島(鹿児島県大島郡和泊町)</td>
+        </tr>
+        <tr>
+          <th>時間</th>
+          <td>詳細調整中</td>
+        </tr>
+      </table>
     </div>
+  </details>
 
-    <div class="card">
-      <div class="card-head">
+  <details class="card">
+    <summary class="card-head">
+      <span class="summary-text">
         <span class="date">2026年11月15日(日)</span>
         <span>ししまいフェス(宮城小学校)</span>
-      </div>
-      <div class="body">
-        <table class="detail">
-          <tr>
-            <th>場所</th>
-            <td>宮城小学校</td>
-          </tr>
-          <tr>
-            <th>出店</th>
-            <td>現在、学校側で飲食可否を確認中のため出店するかどうか未定です。決まり次第更新します。</td>
-          </tr>
-          <tr>
-            <th>時間</th>
-            <td>詳細調整中</td>
-          </tr>
-        </table>
-      </div>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
+    <div class="body">
+      <table class="detail">
+        <tr>
+          <th>場所</th>
+          <td>宮城小学校</td>
+        </tr>
+        <tr>
+          <th>出店</th>
+          <td>現在、学校側で飲食可否を確認中のため出店するかどうか未定です。決まり次第更新します。</td>
+        </tr>
+        <tr>
+          <th>時間</th>
+          <td>詳細調整中</td>
+        </tr>
+      </table>
     </div>
+  </details>
 
-    <div class="card">
-      <div class="card-head">
+  <details class="card">
+    <summary class="card-head">
+      <span class="summary-text">
         <span class="date">2027年2月13日(土)</span>
         <span>てだこウォーク キッチンカー出店</span>
-      </div>
-      <div class="body">
-        <table class="detail">
-          <tr>
-            <th>内容</th>
-            <td>キッチンカー出店</td>
-          </tr>
-          <tr>
-            <th>時間</th>
-            <td>詳細調整中</td>
-          </tr>
-        </table>
-      </div>
+      </span>
+      <span class="arrow">▶</span>
+    </summary>
+    <div class="body">
+      <table class="detail">
+        <tr>
+          <th>内容</th>
+          <td>キッチンカー出店</td>
+        </tr>
+        <tr>
+          <th>時間</th>
+          <td>詳細調整中</td>
+        </tr>
+      </table>
     </div>
+  </details>
 
-  </div>
-</details>
+</section>
 </body>
 </html>
